@@ -1,0 +1,31 @@
+class Solution {
+    public int reverse(int x) {
+        
+        int i = 0;
+        int r;
+        int sign = 1;
+        if (x<0){
+            sign = -1;
+            x = -x;
+        }
+        
+        while(x > 0){
+            
+            if (Integer.MIN_VALUE >= ((long)i*10 + (long)x%10) || ((long)i*10 + (long)x%10) >= Integer.MAX_VALUE){
+                return 0;
+            }
+
+            i = i*10 + x%10;
+            x = x/10;
+            
+        }
+        
+        
+        if (Integer.MIN_VALUE > i || i > Integer.MAX_VALUE){
+            return 0;
+        }
+        
+        return i*sign;
+        
+    }
+}
