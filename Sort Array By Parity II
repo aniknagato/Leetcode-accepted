@@ -1,0 +1,27 @@
+class Solution {
+    public int[] sortArrayByParityII(int[] A) {
+        
+        
+        int ie = 0;
+        int io = 1;
+        
+        int[] a = new int[A.length];
+        
+        for(int j1=0;j1<A.length;j1++){
+            if(A[j1]%2 == 0){
+                a[ie] = A[j1];
+                ie += 2;
+            }
+        }
+        
+        for(int j2=0;j2<A.length;j2++){
+            if(A[j2]%2 == 1){
+                a[io]=A[j2];
+                io += 2;
+            }
+        }
+        
+        return a;
+        
+    }
+}
