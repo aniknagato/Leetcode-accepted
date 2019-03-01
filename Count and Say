@@ -1,0 +1,50 @@
+class Solution {
+    public String countAndSay(int n) {
+        
+        String s = new String("11");
+        
+        if (n==1){
+            return "1";
+        }
+        if (n==2){
+            return "11";
+        }
+        
+        for(int i=3;i<=n;i++){
+            
+            char[] chars = s.toCharArray();
+            int len = s.length();
+            
+            int count = 1;
+            char cur = chars[0];
+            String test = new String("");
+            
+            for(int j=1;j<len;j++){
+                if(cur == chars[j]){
+                    count++;
+                    if(j==len-1){
+                        test = test + count + cur;
+                    }
+                }
+                else {
+                    
+                    test = test + count + cur;
+                    cur = chars[j];
+                    count = 1;
+                    
+                    if (j==len-1){
+                        test = test + count + cur;
+                    }
+                    
+                }
+                s = test;
+            }
+            
+            
+            
+        }
+        
+        return s;
+        
+    }
+}
