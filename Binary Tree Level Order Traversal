@@ -1,0 +1,79 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        
+        
+        if(root == null){
+            return new ArrayList<List<Integer>>();
+        }
+        
+        List<List<Integer>> values = new ArrayList<List<Integer>>();
+        ArrayList<ArrayList<TreeNode>> nodes = new ArrayList<ArrayList<TreeNode>>();
+        
+        Queue<TreeNode> q = new LinkedList<>();
+        
+        HashMap<TreeNode, Integer> map = new HashMap<>();
+        
+        q.add(root);
+        map.put(root,0);
+
+        int count = 1;
+        int level = 0;
+        ArrayList<Integer> ff = new ArrayList<Integer>();
+        ff.add(root.val);
+        values.add(ff);
+        
+        while(count>0){
+            
+            TreeNode t = q.remove();
+            count--;
+            
+            level = map.get(t);
+            
+
+            
+            // if(values[level].isEmpty()){
+            //     values[level] = new ArrayList<Integer>();
+            // }
+            
+            if(t.left != null){
+                q.add(t.left);
+                map.put(t.left,map.get(t)+1);
+                
+                if(values.size() - 1 < map.get(t) + 1){
+                    values.add(new ArrayList<Integer>());
+                }
+                values.get(map.get(t) + 1).add(t.left.val);
+                count++;
+            }
+            if (t.right != null){
+                q.add(t.right);
+                map.put(t.right,map.get(t)+1);
+                
+                if(values.size() - 1 < map.get(t) + 1){
+                    values.add(new ArrayList<Integer>());
+                }
+                values.get(map.get(t) + 1).add(t.right.val);               
+                
+                count++;
+
+            }
+            
+            
+        }
+        
+
+        
+        return values;
+        
+        
+    }
+}
